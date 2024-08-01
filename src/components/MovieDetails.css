@@ -1,0 +1,44 @@
+.movie-details-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+    color: #000;
+  }
+  
+  .movie-details-container img {
+    width: 300px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .movie-info {
+    text-align: center;
+  }
+  
+  .movie-info h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .movie-info p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+  
+  .movie-info h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .movie-info ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .movie-info li {
+    font-size: 1rem;
+    margin-bottom: 5px;
+  }
+  

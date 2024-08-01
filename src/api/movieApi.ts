@@ -10,8 +10,19 @@ export interface Movie {
   overview: string;
 }
 
+export interface MovieDetails extends Movie {
+  release_date: string;
+  runtime: number;
+  genres: { id: number; name: string }[];
+  cast: { name: string; character: string; profile_path: string | null }[];
+}
+
 interface MoviesResponse {
   results: Movie[];
+}
+
+interface CreditsResponse {
+  cast: { name: string; character: string; profile_path: string | null }[];
 }
 
 export const moviesApi = createApi({
@@ -22,10 +33,22 @@ export const moviesApi = createApi({
       query: () => `movie/popular?api_key=${API_KEY}`,
       transformResponse: (response: MoviesResponse) => response.results,
     }),
+    getMovieDetails: builder.query<MovieDetails, number>({
+      query: (movieId) => `movie/${movieId}?api_key=${API_KEY}&append_to_response=credits`,
+      transformResponse: (response: any) => {
+        const { credits, ...movie } = response;
+        return {
+          ...movie,
+          cast: credits.cast,
+        };
+      },
+    }),
   }),
 });
 
-export const { useGetPopularMoviesQuery } = moviesApi;
+export const { useGetPopularMoviesQuery, useGetMovieDetailsQuery } = moviesApi;
+
+
 
 
 
